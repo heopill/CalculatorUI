@@ -169,6 +169,7 @@ private func makeButton(_ text: String) -> UIButton { // 버튼을 만드느 함
         button.setTitle(text, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 30)
         button.layer.cornerRadius = 40
+        button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchDown)
         
         // 해당 text가 들어오면 backgroundColor를 orange색으로 변경
         if ["+", "-", "*", "/", "=", "AC"].contains(text) {
@@ -183,12 +184,29 @@ private func makeButton(_ text: String) -> UIButton { // 버튼을 만드느 함
         
         return button
     }
+```
+<br/>
 
+### buttonTapped(_ sender: UIButton).swift 
+``` swift
+@objc
+    private func buttonTapped(_ sender: UIButton) {
+        if let buttonText = sender.currentTitle {
+            if buttonText == "AC" {
+                label.text = "0"
+            } else if label.text == "0" {
+                label.text = buttonText
+            } else {
+                label.text = (label.text ?? "") + buttonText
+            }
+        }
+    }
 ```
 <br/>
 
 ## 예외 처리
 - 연산자 두개 입력 시 오류 발생
+- 처음 Label의 Text값이 0일 때 숫자를 입력하면 0을 지우고 해당 숫자를 출력
 <br/>
 
 
@@ -198,7 +216,7 @@ private func makeButton(_ text: String) -> UIButton { // 버튼을 만드느 함
 * [x] Lv3 - `UIStackView` 을 사용해서 세로 스택 뷰 생성. 왼쪽과 같이 구성해보세요.
 * [x] Lv4 - 연산 버튼 (+, -, *, /, AC, =) 들은 색상을 orange 로 설정.
 * [x] Lv5 - 모든 버튼들을 원형으로 만들기.
-* [ ] Lv6 - 버튼을 클릭하면 라벨에 표시되도록 합니다.
-* [ ] Lv7 - 초기화 버튼 (`AC`) 을 구현합니다.
+* [x] Lv6 - 버튼을 클릭하면 라벨에 표시되도록 합니다.
+* [x] Lv7 - 초기화 버튼 (`AC`) 을 구현합니다.
 * [ ] Lv8 - 등호 (=) 버튼을 클릭하면 연산이 수행되도록 구현합니다.
 
