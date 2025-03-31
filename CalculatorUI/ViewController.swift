@@ -84,7 +84,9 @@ class ViewController: UIViewController {
     @objc
     private func buttonTapped(_ sender: UIButton) {
         if let buttonText = sender.currentTitle {
-            if label.text == "0" {
+            if buttonText == "AC" {
+                label.text = "0"
+            } else if label.text == "0" {
                 label.text = buttonText
             } else {
                 label.text = (label.text ?? "") + buttonText
