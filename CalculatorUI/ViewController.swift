@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // 숫자 라벨 만들기
     private func makeLabelUI() { // 숫자 라벨 만들기
         view.backgroundColor = .black
         label.textColor = .white
