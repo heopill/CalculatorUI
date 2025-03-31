@@ -63,6 +63,7 @@ class ViewController: UIViewController {
         button.setTitle(text, for: .normal)
         button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
         button.titleLabel?.font = .boldSystemFont(ofSize: 30)
+        button.layer.cornerRadius = 40
         
         button.snp.makeConstraints{ make in
             make.width.height.equalTo(80)
