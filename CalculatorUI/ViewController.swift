@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func makeLabelUI() {
+    private func makeLabelUI() { // 숫자 라벨 만들기
         view.backgroundColor = .black
         label.textColor = .white
         label.text = "12345"
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func makeVerticalStackView() {
+    private func makeVerticalStackView() { // Vertical 스택 뷰를 생성 함수
         verticalStackView.axis = .vertical
         verticalStackView.backgroundColor = .black
         verticalStackView.spacing = 10
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func makeButton(_ text: String) -> UIButton {
+    private func makeButton(_ text: String) -> UIButton { // 버튼을 만드느 함수
         let button = UIButton()
         
         button.setTitle(text, for: .normal)
@@ -67,9 +67,16 @@ class ViewController: UIViewController {
         button.snp.makeConstraints{ make in
             make.width.height.equalTo(80)
         }
+        
+        // 해당 text가 들어오면 backgroundColor를 orange색으로 변경
+        if ["+", "-", "*", "/", "=", "AC"].contains(text) {
+            button.backgroundColor = .orange
+        }
+        
         return button
     }
     
+    // Horizontal 스택 뷰를 생성 함수
     private func makeHorizontalStackView(_ buttonLabel: [String]) {
         
         let horizontalStackView = UIStackView()
