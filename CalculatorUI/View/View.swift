@@ -89,7 +89,7 @@ class View: UIView {
     // 버튼 클릭 이벤트
     @objc
     private func buttonTapped(_ sender: UIButton) {
-        let viewController = ViewController()
+        let model = Model()
         if let buttonText = sender.currentTitle {
             if buttonText == "AC" {
                 result = "0"
@@ -100,7 +100,7 @@ class View: UIView {
                     label.text = "Error!"
                     label.textColor = .yellow
                 } else {
-                    if let result = viewController.calculate(expression: result) {
+                    if let result = model.calculate(expression: result) {
                         label.text = "\(result)"
                         label.textColor = .white
                     } else {
@@ -108,6 +108,10 @@ class View: UIView {
                         label.textColor = .white
                     }
                 }
+            } else if label.text == "Error!" {
+                result = buttonText
+                label.text = result
+                label.textColor = .white
             } else if label.text == "0" {
                 result = buttonText
                 label.text = result
