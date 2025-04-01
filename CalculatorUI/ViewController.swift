@@ -68,8 +68,10 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchDown)
         
         // 해당 text가 들어오면 backgroundColor를 orange색으로 변경
-        if ["+", "-", "*", "/", "=", "AC"].contains(text) {
+        if ["+", "-", "*", "/", "="].contains(text) {
             button.backgroundColor = .orange
+        } else if ["AC"].contains(text) {
+            button.backgroundColor = .red
         } else {
             button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
         }
@@ -85,12 +87,34 @@ class ViewController: UIViewController {
     private func buttonTapped(_ sender: UIButton) {
         if let buttonText = sender.currentTitle {
             if buttonText == "AC" {
-                label.text = "0"
+                result = "0"
+                label.text = result
+            } else if buttonText == "=" {
+                if let result = calculate(expression: result) {
+                    label.text = "\(result)"
+                } else {
+                    label.text = "0"
+                }
             } else if label.text == "0" {
-                label.text = buttonText
+                result = buttonText
+                label.text = result
             } else {
-                label.text = (label.text ?? "") + buttonText
+                result = (label.text ?? "") + buttonText
+                label.text = result
             }
+        }
+    }
+    
+    /// 수식 문자열을 넣으면 계산해주는 메서드.
+    ///
+    /// 예를 들어 expression 에 "1+2+3" 이 들어오면 6 을 리턴한다.
+    /// 잘못된 형식의 수식을 넣으면 앱이 크래시 난다. ex) "1+2++"
+    private func calculate(expression: String) -> Int? {
+        let expression = NSExpression(format: expression)
+        if let result = expression.expressionValue(with: nil, context: nil) as? Int {
+            return result
+        } else {
+            return nil
         }
     }
     
