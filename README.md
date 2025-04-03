@@ -206,7 +206,9 @@ private func makeButton(_ text: String) -> UIButton { // 버튼을 만드느 함
 
 ## 예외 처리
 - 연산자 두개 입력 시 오류 발생
+- 0으로 나누었을 때 예외 처리
 - 처음 Label의 Text값이 0일 때 숫자를 입력하면 0을 지우고 해당 숫자를 출력
+- AC 버튼 배경 색상 변경
 <br/>
 
 
