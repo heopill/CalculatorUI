@@ -99,6 +99,9 @@ class View: UIView {
                 if ["+", "-", "*", "/"].contains(result.suffix(1)) {
                     label.text = "Error!"
                     label.textColor = .yellow
+                } else if label.text?.contains("/0") == true { // 0으로 나눌 때 예외처리
+                    label.text = "Error!"
+                    label.textColor = .yellow
                 } else {
                     if let result = model.calculate(expression: result) {
                         label.text = "\(result)"
